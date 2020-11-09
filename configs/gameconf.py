@@ -6,6 +6,12 @@ SH = 720
 GAME_FPS = 60
 
 # lvl_1 conf
-# offset y-axis
+# offsets for wizards
 OFFSET_X = 400
 OFFSET_Y = 25
+
+# offsets for spells
+CAST_OFFSET_Y = 40
+FLAME_OFFSET_Y = 220
+
+GAME_DIFFICULTY = 3
