@@ -7,8 +7,20 @@ class ProblemController:
             "problem": None,
             "answer": None
         }
+        self.input_controllers = []
+
+    def add_input_controllers(self, input_c1, input_c2):
+        self.input_controllers.append(input_c1)
+        self.input_controllers.append(input_c2)
+
+    def notify_input_controllers(self):
+        for input_controller in self.input_controllers:
+            input_controller.clean_input()
+            if not input_controller.is_player:
+                input_controller.set_countdown()
 
     def set_problem(self):
+        self.notify_input_controllers()
         problem, answer = generate_equation()
         self.problem["problem"] = problem
         self.problem["answer"] = answer
@@ -23,3 +35,4 @@ class ProblemController:
     def clean_problem(self):
         self.problem["problem"] = None
         self.problem["answer"] = None
+        self.notify_input_controllers()
