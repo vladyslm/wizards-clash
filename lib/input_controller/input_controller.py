@@ -12,6 +12,15 @@ class InputController:
         self.is_player = is_player
         self.raw_input = []
 
+    def get_str_input(self):
+        input_str = "?"
+        if len(self.raw_input) != 0:
+            input_str = ""
+            for key_code in self.raw_input:
+                key_name = pygame.key.name(key_code)
+                input_str += key_name
+        return input_str
+
     def get_keys_names(self):
         keys = []
         for key_code in self.input:
@@ -34,9 +43,9 @@ class InputController:
         self.game_controller.validate_input((self.is_player, self.isCorrect))
 
     def clean_input(self):
-        self.input.clear()
-        self.keys.clear()
-        self.raw_input.clear()
+        self.input = []
+        self.keys = []
+        self.raw_input = []
 
     def add_raw_input(self, char):
         self.raw_input.append(char)
