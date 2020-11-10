@@ -14,4 +14,12 @@ OFFSET_Y = 25
 CAST_OFFSET_Y = 40
 FLAME_OFFSET_Y = 220
 
+# offsets for the problem screen
+PROBLEM_SCREEN_OFFSET_Y = 200
+
 GAME_DIFFICULTY = 3
+G_DIFFICULTY = {
+    1: (7, 10)  # 1 - easy
+}
+
+ERROR_CHANCE = 20 # error chance is 20%
