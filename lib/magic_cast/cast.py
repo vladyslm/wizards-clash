@@ -34,18 +34,17 @@ class MagicCast:
             self.flame_frame_count = 0
 
     def draw_cast(self):
-
-        c = OFFSET_X // self.cast_width
+        c = (OFFSET_X - 40) // self.cast_width
         init_x_pos = (SW / 2) - self.cast_width // 2
         sprite_w = self.cast_width
         sprite_x_pos = sprite_w
         is_first = True
         for i in range(c):
             if is_first:
-                self.screen.blit(self.cast[0], (init_x_pos, SH - 130))
+                self.screen.blit(self.cast[0], (init_x_pos, SH - CAST_OFFSET_Y))
                 is_first = False
             else:
-                self.screen.blit(self.cast[0], (init_x_pos + sprite_x_pos, SH - 130))
-                self.screen.blit(self.cast[0], (init_x_pos - sprite_x_pos, SH - 130))
+                self.screen.blit(self.cast[0], (init_x_pos + sprite_x_pos, SH - CAST_OFFSET_Y))
+                self.screen.blit(self.cast[0], (init_x_pos - sprite_x_pos, SH - CAST_OFFSET_Y))
                 # print(sprite_w)
                 sprite_x_pos = sprite_w * i
