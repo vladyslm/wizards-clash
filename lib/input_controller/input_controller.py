@@ -26,8 +26,6 @@ class InputController:
         for key_code in self.input:
             key_name = pygame.key.name(key_code)
             keys.append(key_name)
-        # self.clean_input()
-        print(keys)
         self.keys = keys
 
     def add_input(self, input_key):
