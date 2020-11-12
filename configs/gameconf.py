@@ -33,3 +33,16 @@ FLASK_OFFSET_X = 150
 FLASK_OFFSET_Y = 100
 SCORE_OFFSET_Y = 60
 LVL_OFFSET_Y = 30
+
+# UI menu
+SPACE_BETWEEN_BTN = 20
+
+# file name
+SCOREBOARD_FILE_NAME = "scoreboard.json"
+
+# Scoreboard structure (json) -> {"players": [{"name": "str", "score": int}]}
+SBOARD_ROOT_KEY = "players"
+
+# UI scoreboard
+SBOARD_OFFSET_Y = 200
+
