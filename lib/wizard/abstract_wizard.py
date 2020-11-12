@@ -1,17 +1,6 @@
 import pygame
 from configs.gameconf import *
-
-
-def flip_sprite(sprite):
-    return pygame.transform.flip(sprite, True, False)
-
-
-def flip_sprites(sprite_list):
-    flipped = []
-    for sprite in sprite_list:
-        sprite = flip_sprite(sprite)
-        flipped.append(sprite)
-    return flipped
+from lib.utils import flip_sprite, flip_sprites
 
 
 def get_frame_coef(anim):
@@ -35,13 +24,13 @@ class AbstractWizard:
         if side:
             self.idle = flip_sprites(game_obj["idle"])
             self.fight = flip_sprites(game_obj["fight"])
-            self.move_to = (OFFSET_X * (-1)) + self.width
+            self.move_to = (OFFSET_X * (-1)) + self.width / 2
         else:
             self.idle = game_obj["idle"]
             self.fight = game_obj["fight"]
-            self.move_to = OFFSET_X
+            self.move_to = OFFSET_X + self.width / 2
 
-    def reset_fame_count(self):
+    def reset_frame_count(self):
         self.frame_count = 0
 
     def get_pos(self):
@@ -59,6 +48,7 @@ class AbstractWizard:
         self.screen.blit(self.idle[(self.frame_count // frame_coef) - 1], self.get_pos())
         self.frame_count += 1
         if self.frame_count > GAME_FPS:
+            # TODO: use reset_frame_count func instead of new assigning
             self.frame_count = 0
 
     def do_fight(self):
@@ -73,7 +63,7 @@ class AbstractWizard:
         if self.cur_anim == anim or self.cur_anim is None:
             anim()
         else:
-            self.reset_fame_count()
+            self.reset_frame_count()
             anim()
 
 
