@@ -111,7 +111,7 @@ class Controller:
             return "gameover"
         if self.players_life_left <= 0 or self.enemy_power >= 10 or self.flame_x_pos <= SW // 2 - 350:
             return "lose"
-        if self.enemys_life_left <= 0 or self.players_power >= 1 or self.flame_x_pos >= SW // 2 + 350:
+        if self.enemys_life_left <= 0 or self.players_power >= 10 or self.flame_x_pos >= SW // 2 + 350:
             return "win"
         return "playing"
 
