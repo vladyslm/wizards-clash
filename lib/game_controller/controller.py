@@ -4,8 +4,6 @@ from lib.ui.icon import player_ui, enemy_ui
 from lib.ui.info import lvl_info
 from score_state import score_state
 
-# TODO: clean up the code below
-# answer_list = [1 or 0, True or False]
 
 FLAME_INIT_POS = SW / 2
 POINTS_FOR_ANSWER = 1
@@ -48,8 +46,6 @@ class Controller:
 
     def validate_input(self, answer):  # answer - tuple(is_player, is_answer_correct)
         if answer[0]:
-            print("player answering")
-            print(answer)
             if answer[1]:
                 self.player_score += SCORE
                 self.players_power += POINTS_FOR_ANSWER
@@ -58,14 +54,12 @@ class Controller:
                 self.players_life_left -= 1
                 self.flame_x_pos -= FLAME_STEP
         else:
-            print("nps answering")
             if answer[1]:
                 self.enemy_power += POINTS_FOR_ANSWER
                 self.flame_x_pos -= FLAME_STEP
             else:
                 self.enemys_life_left -= 1
                 self.flame_x_pos += FLAME_STEP
-        # self.update_game_state()
         self.problem_controller.set_problem()
 
     def get_flame_pos(self):
@@ -78,22 +72,18 @@ class Controller:
         player_ui.display_ui(self.screen, self.players_life_left, self.players_power, 10)
         enemy_ui.display_ui(self.screen, self.enemys_life_left, self.enemy_power, 10)
         users_cur_input = self.player_input_controller.get_str_input()
-        # lvl_info.draw_lvl(self.screen, self.cur_lvl)
         lvl_info.display_info(self.screen, self.player_score, self.cur_lvl)
-        # print(f"users: cur input {users_cur_input}")
         problem_label = self.game_font.render(
             f"{self.problem_controller.get_problem()} = {users_cur_input}", True, (238, 231, 231)
         )
         p_label_x_offset = problem_label.get_width() // 2
         self.screen.blit(problem_label, (SW / 2 - p_label_x_offset, PROBLEM_SCREEN_OFFSET_Y))
-        # print(self.problem_controller.get_problem())
         self.magic_cast.draw_cast()
         self.player.action(self.player.do_fight)
         self.enemy.action(self.enemy.do_fight)
         self.magic_cast.draw_flame(self.get_flame_pos())
 
     def player_win(self):
-        # lvl_info.draw_lvl(self.screen, self.cur_lvl)
         lvl_info.display_info(self.screen, self.player_score, self.cur_lvl)
         self.player.action(self.player.do_idle)
         player_ui.display_ui(self.screen, self.players_life_left, self.players_power, 10)
@@ -118,7 +108,6 @@ class Controller:
     def reset(self):
         self.flame_x_pos = FLAME_INIT_POS
 
-        # self.player_score = 0
         self.players_power = 0
         self.enemy_power = 0
         self.cur_lvl += 1
@@ -136,7 +125,6 @@ class Controller:
             "gameover": self.game_over
         }
         state = self.get_game_status()
-        print(state)
         stages[state]()
 
     def game_over(self):

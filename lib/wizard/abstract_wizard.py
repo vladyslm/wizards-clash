@@ -43,8 +43,6 @@ class AbstractWizard:
 
     def do_idle(self):
         frame_coef = get_frame_coef(self.idle)
-        # self.reset_fame_count()
-        print(self.frame_count)
         self.screen.blit(self.idle[(self.frame_count // frame_coef) - 1], self.get_pos())
         self.frame_count += 1
         if self.frame_count > GAME_FPS:
@@ -59,7 +57,6 @@ class AbstractWizard:
             self.frame_count = 0
 
     def action(self, anim):
-        # print(anim)
         if self.cur_anim == anim or self.cur_anim is None:
             anim()
         else:
