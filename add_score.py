@@ -24,7 +24,6 @@ def add_score():
     running = True
     while running:
         screen.blit(BG, (0, 0))
-        print(textinput.get_surface().get_width())
         pygame.draw.rect(screen, GREY, rec_bg)
         screen.blit(label, (SW / 2 - label.get_width() // 2, SH / 2 - label.get_height() // 2 - 50))
         events = pygame.event.get()
