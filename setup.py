@@ -14,4 +14,4 @@ FONT_SMALL = pygame.font.SysFont("arial", 28, True)
 
 MENU_GB = pygame.image.load('assets/graphic/menu/wizards_clash.png')
 GAME_BG = pygame.image.load('./assets/graphic/background/BG1.png')
-SCOREBOARD_BG = pygame.image.load('assets/graphic/scoreboard/sboard_bg.png')
+SCOREBOARD_BG = pygame.image.load('assets/graphic/scoreboard/scoreboard_bgv2.png')
