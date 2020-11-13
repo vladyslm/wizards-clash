@@ -62,3 +62,9 @@ def save_score(score_data):
     except FileNotFoundError:
         write_json(create_sboard_json_struc(score_data), path)
 
+
+def scale(list_anim, a_width, a_height):
+    al = []
+    for frame in list_anim:
+        al.append(pygame.transform.scale(frame, (a_width, a_height)))
+    return al
