@@ -42,6 +42,13 @@ def write_json(data, path, mode="w"):
         json.dump(data, write, ensure_ascii=False)
 
 
+def init_scoreboard():
+    data = create_sboard_json_struc()
+    root = get_project_root()
+    path = f"{root}/{SCOREBOARD_FILE_NAME}"
+    write_json(data, path)
+
+
 def save_score(score_data):
     root = get_project_root()
     path = f"{root}/{SCOREBOARD_FILE_NAME}"
