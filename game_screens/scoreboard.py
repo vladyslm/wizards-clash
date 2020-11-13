@@ -1,6 +1,6 @@
 from pygame.locals import *
 from configs.gameconf import *
-from lib.utils import read_json_data, get_project_root
+from lib.utils import read_json_data, get_project_root, init_scoreboard
 
 from setup import *
 
@@ -15,8 +15,7 @@ def get_scoreboard():
             label = font.render(f"{el['name']} - {el['score']}", True, WHITE)
             l_list.append(label)
     except TypeError:
-        # TODO: add error handling!
-            pass
+        init_scoreboard()
     return l_list
 
 
