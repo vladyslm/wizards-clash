@@ -1,5 +1,6 @@
 import pygame
 import os
+from lib.utils import scale
 
 dir_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -13,13 +14,6 @@ flame_anim = [
     pygame.image.load(f"{dir_path}/flame-anim/f_7.png"),
     pygame.image.load(f"{dir_path}/flame-anim/f_8.png")
 ]
-
-
-def scale(list_anim, a_width, a_height):
-    al = []
-    for frame in list_anim:
-        al.append(pygame.transform.scale(frame, (a_width, a_height)))
-    return al
 
 
 rescaled = scale(flame_anim, 64, 140)
