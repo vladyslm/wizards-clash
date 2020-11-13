@@ -81,7 +81,7 @@ class Controller:
         self.magic_cast.draw_cast()
         self.player.action(self.player.do_fight)
         self.enemy.action(self.enemy.do_fight)
-        self.magic_cast.draw_flame(self.get_flame_pos())
+        self.magic_cast.draw_flame(self.magic_cast.flame_anim, self.get_flame_pos())
 
     def player_win(self):
         lvl_info.display_info(self.screen, self.player_score, self.cur_lvl)

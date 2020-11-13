@@ -1,4 +1,5 @@
 # import pygame
+import time
 from configs.gameconf import *
 
 
@@ -21,17 +22,21 @@ class MagicCast:
         self.cast_width = cast_obj["width"]
         self.cast = cast_obj["cast"]
 
+        self.lt = 0
+        self.cur_frame = 0
+
     def get_pos(self, pos_x, pos_y=None):
         y_pos = self.flame_offset_y if pos_y is None else pos_y
         x_pos = pos_x - self.flame_width // 2
         return x_pos, y_pos
 
-    def draw_flame(self, pos_x, pos_y=None):
-        frame_coef = get_frame_coef(self.flame_anim)
-        self.screen.blit(self.flame_anim[(self.flame_frame_count // frame_coef) - 1], self.get_pos(pos_x, pos_y))
-        self.flame_frame_count += 1
-        if self.flame_frame_count > GAME_FPS:
-            self.flame_frame_count = 0
+    def draw_flame(self, anim, pos_x, pos_y=None):
+        if time.perf_counter() - self.lt >= .1:
+            self.lt = time.perf_counter()
+            self.cur_frame += 1
+            if self.cur_frame > len(anim) - 1:
+                self.cur_frame = 0
+        self.screen.blit(anim[self.cur_frame], self.get_pos(pos_x, pos_y))
 
     def draw_cast(self):
         c = (OFFSET_X - 40) // self.cast_width
