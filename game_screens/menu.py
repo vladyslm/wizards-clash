@@ -1,8 +1,8 @@
 from pygame.locals import *
 from configs.gameconf import *
-from game import game
-from add_score import add_score
-from scoreboard import scoreboard
+from game_screens.game import game
+from game_screens.add_score import add_score
+from game_screens.scoreboard import scoreboard
 from modules.menu_ui_el import *
 from setup import *
 
