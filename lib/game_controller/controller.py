@@ -2,7 +2,7 @@ import pygame
 from configs.gameconf import PROBLEM_SCREEN_OFFSET_Y, SW, SH, GAME_FPS
 from lib.ui.icon import player_ui, enemy_ui
 from lib.ui.info import lvl_info
-from score_state import score_state
+from modules.score_state import score_state
 
 
 FLAME_INIT_POS = SW / 2

@@ -8,7 +8,7 @@ from lib.game_controller.controller import Controller
 from lib.input_controller.input_controller import InputController
 from lib.input_controller.npc_input_controller import NpcInputController
 
-from problem_controller import problem_controller
+from modules.problem_controller import problem_controller
 
 from configs.gameconf import *
 from setup import *

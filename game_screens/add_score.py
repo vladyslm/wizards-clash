@@ -1,6 +1,6 @@
 from lib.text_input import TextInput
 from configs.gameconf import GAME_FPS
-from score_state import score_state
+from modules.score_state import score_state
 from lib.utils import save_score
 from setup import *
 
