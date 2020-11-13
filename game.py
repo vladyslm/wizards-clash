@@ -1,40 +1,26 @@
-import pygame
-# from assets.gameassets.bluewizard.gameobj import BLUE_WIZARD
 from assets.gameassets.bluewizard.gameobj import BLUE_WIZARD
 from assets.gameassets.flame.gameobj import FLAME
 from assets.gameassets.cast.gameobj import CAST
+
 from lib.wizard.abstract_wizard import AbstractWizard
 from lib.magic_cast.cast import MagicCast
 from lib.game_controller.controller import Controller
-# from lib.input_controller.problem_controller import ProblemController
-from problem_controller import problem_controller
 from lib.input_controller.input_controller import InputController
 from lib.input_controller.npc_input_controller import NpcInputController
-# from lib.ui.icon import IconController
-# from assets.gameassets.icon.gameobj import ICON
+
+from problem_controller import problem_controller
 
 from configs.gameconf import *
-
-SCREEN = pygame.display.set_mode((SW, SH))
-pygame.display.set_caption("WizardsClash")
-
-BG = pygame.image.load('./assets/graphic/background/BG1.png')
-
-
-pygame.init()
+from setup import *
 
 
 def game():
-    run = True
     fps = GAME_FPS
-    clock = pygame.time.Clock()
 
     p = AbstractWizard(BLUE_WIZARD, SCREEN)
     e = AbstractWizard(BLUE_WIZARD, SCREEN, True)
     flame = MagicCast(FLAME, CAST, SCREEN)
 
-    # problem_controller = ProblemController()
-    # problem_controller.set_problem()
     controller = Controller(p, e, flame, problem_controller, SCREEN)
     player_input_controller = InputController(controller)
     npc = NpcInputController(controller, False)
@@ -43,13 +29,11 @@ def game():
     npc.set_countdown()
 
     def update_screen():
-        SCREEN.blit(BG, (0, 0))
+        SCREEN.blit(GAME_BG, (0, 0))
         controller.update_game_state()
         pygame.display.update()
 
-    u_input = []
     while not controller.stopgame:
-        # clock.tick(fps)
         npc.is_ready()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -64,7 +48,6 @@ def game():
                 elif event.key == pygame.K_q:
                     controller.stopgame = True
                 else:
-                    # u_input.append(event.key)
                     player_input_controller.add_raw_input(event.key)
         update_screen()
         clock.tick(fps)

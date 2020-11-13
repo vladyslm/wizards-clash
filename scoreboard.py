@@ -1,18 +1,8 @@
 from pygame.locals import *
 from configs.gameconf import *
-from modules.menu_ui_el import *
 from lib.utils import read_json_data, get_project_root
 
-clock = pygame.time.Clock()
-pygame.init()
-
-SCREEN = pygame.display.set_mode((SW, SH))
-pygame.display.set_caption("WizardsClash")
-BG = pygame.image.load('assets/graphic/scoreboard/sboard_bg.png')
-
-font = pygame.font.SysFont("arial", 50, True)
-
-WHITE = (255, 255, 255)
+from setup import *
 
 
 def get_scoreboard():
@@ -43,7 +33,7 @@ def scoreboard():
     running = True
     labels = get_scoreboard()
     while running:
-        SCREEN.blit(BG, (0, 0))
+        SCREEN.blit(SCOREBOARD_BG, (0, 0))
         display_scoreboard(labels, SCREEN)
 
         for event in pygame.event.get():
@@ -52,9 +42,6 @@ def scoreboard():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
-            if event.type == MOUSEBUTTONDOWN:
-                if event.button == 1:
-                    click_event = True
 
         pygame.display.update()
         clock.tick(GAME_FPS)
