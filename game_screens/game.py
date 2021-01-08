@@ -1,16 +1,14 @@
+import sys
 from assets.gameassets.bluewizard.gameobj import BLUE_WIZARD
-from assets.gameassets.flame.gameobj import FLAME
 from assets.gameassets.cast.gameobj import CAST
-
-from lib.wizard.abstract_wizard import AbstractWizard
-from lib.magic_cast.cast import MagicCast
+from assets.gameassets.flame.gameobj import FLAME
+from configs.gameconf import *
 from lib.game_controller.controller import Controller
 from lib.input_controller.input_controller import InputController
 from lib.input_controller.npc_input_controller import NpcInputController
-
+from lib.magic_cast.cast import MagicCast
+from lib.wizard.abstract_wizard import AbstractWizard
 from modules.problem_controller import problem_controller
-
-from configs.gameconf import *
 from setup import *
 
 
@@ -37,7 +35,9 @@ def game():
         npc.is_ready()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                controller.stopgame = True
+                # controller.stopgame = True
+                pygame.quit()
+                sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     player_input_controller.add_input(player_input_controller.raw_input)

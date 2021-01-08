@@ -2,7 +2,7 @@ import random
 import math
 import ast
 import operator
-from configs.gameconf import GAME_DIFFICULTY
+# from configs.gameconf import GAME_DIFFICULTY
 # simple math problem generator
 # will generate an equations and return a tuple(equation, answer)
 
@@ -14,6 +14,12 @@ OP_MAP = {
 
 
 def tree_node(left, right, oper):
+    # string = f"{left} {oper} {right}"
+    # return string
+    case = random.randint(0, 1)
+    if case:
+        string = f"{left} {oper} {right}"
+        return string
     string = f"({left} {oper} {right})"
     return string
 
@@ -52,7 +58,14 @@ class Calc(ast.NodeVisitor):
         return calc.visit(tree.body[0])
 
 
+def get_number_of_nodes():
+    start = 2
+    stop = 4
+    num_nodes = random.randint(start, stop)
+    return num_nodes
+
+
 def generate_equation():
-    problem = build_tree(GAME_DIFFICULTY)
+    problem = build_tree(get_number_of_nodes())
     answer = Calc.evaluate(problem)
     return problem, answer

@@ -1,3 +1,4 @@
+import sys
 from pygame.locals import *
 from configs.gameconf import *
 from game_screens.game import game
@@ -42,6 +43,7 @@ def menu():
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
+                sys.exit()
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
                     click_event = True
